@@ -9,9 +9,9 @@ import pytesseract
 from PIL import Image
 
 
-capture = cv2.VideoCapture(0)
-cv2.imshow('video',capture)
-img = cv2.imread('ex2.jpg',cv2.IMREAD_COLOR)
+#capture = cv2.VideoCapture(0)
+#cv2.imshow('video',capture)
+img = cv2.imread('in.jpg',cv2.IMREAD_COLOR)
 
 
 img = cv2.resize(img, (620,480) )
@@ -108,13 +108,22 @@ Cropped = gray[topx:bottomx+1, topy:bottomy+1]
 text = pytesseract.image_to_string(Cropped, config='--psm 11')
 
 print("Detected Number is:",text)
+index_end = text.find('.', 0, len(text))
+print(index_end)
+palte = text[index_end-3]+text[index_end-2]+text[index_end-1]+text[index_end+1]+text[index_end+2]
+print(palte)
+#text = text.replace('\n', '')
+#text = text.replace('\n', '')
+#print(len(text))
+#print(int(text))
+#if int(text) == 2222:
+# print ("dung")
+
+#cv2.imshow('image',img)
+
+#cv2.imshow('Cropped',Cropped)
 
 
-cv2.imshow('image',img)
-
-cv2.imshow('Cropped',Cropped)
-
-
-cv2.waitKey(0)
+#cv2.waitKey(0)
 
 cv2.destroyAllWindows()
